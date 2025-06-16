@@ -1,0 +1,43 @@
+<h1 id="event-binding">Event Binding</h1>
+
+<div class="group">
+  <h2>Target event</h2>
+  <button type="button" (click)="emitSave($event)">Save</button>
+
+  <button type="button" on-enter="emitSave()">on-click Save</button>
+
+  <h4>myClick is an event on the custom ClickDirective:</h4>
+
+  {{ clickMessage }}
+</div>
+
+<div class="group">
+  <h2>$event and event handling statements</h2>
+  <h4>Result: {{ currentItem.name }}</h4>
+
+  <input [value]="currentItem.name" (input)="emitInputChange($event)" />
+  <div>without NgModel</div>
+</div>
+
+<div class="group">
+  <h2>Binding to a nested component</h2>
+
+  <h4>Click to see event target class:</h4>
+
+  <div class="parent-div" (click)="emitClick($event)" clickable>
+    Click me (parent)
+    <div class="child-div">Click me too! (child)</div>
+  </div>
+
+  <h2>Saves only once:</h2>
+  <div (click)="emitSave()" clickable>
+    <button type="button" (click)="emitSave($event)">
+      Save, no propagation
+    </button>
+  </div>
+
+  <h2>Saves twice:</h2>
+  <div (click)="emitSave()" clickable>
+    <button type="button" (click)="emitSave()">Save with propagation</button>
+  </div>
+</div>

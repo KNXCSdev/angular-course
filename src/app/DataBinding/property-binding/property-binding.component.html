@@ -1,0 +1,58 @@
+<h1>Property binding</h1>
+
+<div class="group">
+  <h2>Binding the src property of an image:</h2>
+  <img width="80" alt="item" [src]="itemImageUrl" />
+</div>
+
+<div class="group">
+  <h2>Binding to the colSpan property</h2>
+  <table border="1">
+    <tr>
+      <td>Column 1</td>
+      <td>Column 2</td>
+    </tr>
+    <!-- Notice the colSpan property is camel case -->
+    <tr>
+      <td [colSpan]="2">Span 2 columns</td>
+    </tr>
+  </table>
+</div>
+
+<div class="group">
+  <h2>Button disabled state bound to isUnchanged property:</h2>
+  <!-- Bind button disabled state to `isUnchanged` property -->
+  <button type="button" [disabled]="isUnchanged">Disabled Button</button>
+</div>
+
+<div class="group">
+  <h2>Property binding and interpolation</h2>
+  <p>
+    <img width="50" alt="Interpolated item" src="{{ itemImageUrl }}" /> is the
+    <i>interpolated</i> image.
+  </p>
+  <p>
+    <img width="50" alt="Property Bound item" [src]="itemImageUrl" /> is the
+    <i>property bound</i> image.
+  </p>
+  <p>
+    <span>"{{ interpolationTitle }}" is the <i>interpolated</i> title.</span>
+  </p>
+  <p>
+    "<span [innerHTML]="propertyTitle"></span>" is the
+    <i>property bound</i> title.
+  </p>
+</div>
+
+<div class="group">
+  <h2>Malicious content</h2>
+
+  <p>
+    <span>"{{ evilTitle }}" is the <i>interpolated</i> evil title.</span>
+  </p>
+
+  <p>
+    "<span [innerHTML]="evilTitle"></span>" is the <i>property bound</i> evil
+    title.
+  </p>
+</div>
