@@ -1,0 +1,28 @@
+<p>
+  The condition is currently
+  <span
+    class="condition"
+    [ngClass]="{
+      'condition-false': !condition,
+      'condition-true': condition,
+      unless: true
+    }"
+    >{{ condition }}</span
+  >.
+  <button
+    type="button"
+    (click)="condition = !condition"
+    [ngClass]="{ a: condition, b: !condition }"
+  >
+    Toggle condition to {{ condition ? "false" : "true" }}
+  </button>
+</p>
+
+<p *appUnless="condition" class="condition-false">
+  (A) This paragraph is displayed because the condition is false.
+</p>
+
+<p *appUnless="!condition" class="condition-true">
+  (B) Although the condition is true, this paragraph is displayed because
+  appUnless is set to false.
+</p>
