@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Logger } from './services/logger.service';
+import { HeroService } from './services/hero2services.service';
 export class Item {
   name = '';
 }
@@ -15,11 +17,14 @@ export class AppComponent {
   currentItem = { name: 'teapot' };
   clickMessage = '';
 
+  constructor(private heroService: HeroService) {}
+
   onSave(event?: MouseEvent) {
     const evtMsg = event
       ? ' Event target is ' + (event.target as HTMLElement).textContent
       : '';
     alert('Saved.' + evtMsg);
+
     if (event) {
       event.stopPropagation();
     }
@@ -34,6 +39,8 @@ export class AppComponent {
       ? ' Event target class is ' + (event.target as HTMLElement).className
       : '';
     alert('Click me.' + evtMsg);
+    const test = this.heroService.getHeroes();
+    console.log(test);
   }
 
   getValue(event: Event): string {
