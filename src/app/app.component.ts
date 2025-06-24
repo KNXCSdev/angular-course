@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Logger } from './services/logger.service';
 import { HeroService } from './services/hero2services.service';
+import { ActivatedRoute } from '@angular/router';
 export class Item {
   name = '';
 }
@@ -9,15 +10,31 @@ export class Item {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   //SECTION TEXT INTERPOLATION
   currentCustomer = 'Mario';
 
   //SECTION EVENT BINDING
   currentItem = { name: 'teapot' };
   clickMessage = '';
+  name: string;
 
-  constructor(private heroService: HeroService) {}
+  constructor(
+    private heroService: HeroService,
+    // TO
+    private router: ActivatedRoute,
+    // TO GET PARAMS OF URL
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    this.router.queryParams.subscribe((params) => {
+      this.name = params['name'];
+    });
+
+    // const heroId = this.route.snapshot.paramMap.get('id');
+    // this.hero$ = this.heroService.getHeroes();
+  }
 
   onSave(event?: MouseEvent) {
     const evtMsg = event
